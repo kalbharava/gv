@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Siddhart!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #000428, #004e92);
+      color: white;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+    h2 {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+    .surprise {
+      background-color: #ff5722;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .surprise:hover {
+      transform: scale(1.1);
+      background-color: #e64a19;
+    }
+    .hidden {
+      display: none;
+    }
+    @keyframes confetti {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      top: -10px;
+      animation: confetti 5s linear infinite;
+    }
+    audio {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+    img {
+      max-width: 90%;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday Siddhart (siddu pajjii)! 🎉</h1>
+  <h2>Countdown to your special day!</h2>
+  <div id="countdown">Loading...</div>
+  <button class="surprise" onclick="showSurprise()">Click for a Surprise!</button>
+  <div id="surprise-content" class="hidden">
+    <h2>🎁 Here's Your Surprise! 🎁</h2>
+    <!-- Updated to show local image from your file system -->
+    <img src="file:///C:/Users/user/AppData/Local/Temp/Rar$EXa4432.23820.rartemp/WhatsApp%20Image%202024-12-21%20at%2021.48.44_46ceb722.jpg" alt="Surprise!">
+  </div>
+  <audio controls autoplay>
+    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    const confettiColors = ['#FF4081', '#FFC107', '#4CAF50', '#2196F3', '#9C27B0'];
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(confetti);
+      }
+    }
+    function countdown() {
+      const birthday = new Date(new Date().getFullYear(), 11, 22); // Updated to 22nd December
+      const now = new Date();
+      const diff = birthday - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerText = "🎂 It's Your Birthday! 🎂";
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('countdown').innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+    function showSurprise() {
+      document.getElementById('surprise-content').classList.remove('hidden');
+    }
+    setInterval(countdown, 1000);
+    createConfetti();
+  </script>
+</body>
+</html>
